@@ -2,14 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:jane_app/constants/image_constant.dart';
-import 'package:jane_app/custom_widgets/forms/app_text_field.dart';
 import 'package:jane_app/custom_widgets/logo_text.dart';
-import 'package:jane_app/custom_widgets/product_card.dart';
-import 'package:jane_app/custom_widgets/store_card.dart';
+import 'package:jane_app/custom_widgets/previous_purchases.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/custom_widgets/top_stores.dart';
 import 'package:jane_app/resources/resources.dart';
-import 'package:reactive_forms/reactive_forms.dart';
+import 'package:jane_app/routes/routes.dart';
 
 class Home extends StatefulWidget {
   final ZoomDrawerController zoomDrawerController;
@@ -79,36 +77,37 @@ class _HomeState extends State<Home> {
                   Text(
                     'Discover your favorite products?',
                     textScaleFactor: 1.2,
-                    style: TextStyle(
-                      fontWeight: FontWeight.w100,
-                    ),
                   ),
                 ],
               ),
               SizedBox(
                 height: 30,
               ),
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                decoration: BoxDecoration(
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(context, Routes.SEARCH_SCREEN),
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  decoration: BoxDecoration(
                     color: Resources.LIGHTER_BLUE_COLOR,
                     borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: Resources.LIGHT_BLUE_COLOR)),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.search,
-                      color: Colors.black,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Search your product',
-                      style: TextStyle(color: Resources.GREY_TEXT_COLOR),
-                      textScaleFactor: 1.1,
-                    )
-                  ],
+                    border: Border.all(color: Resources.LIGHT_BLUE_COLOR),
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Colors.black,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        'Search your product',
+                        style: TextStyle(color: Resources.GREY_TEXT_COLOR),
+                        textScaleFactor: 1.1,
+                      )
+                    ],
+                  ),
                 ),
               ),
               SizedBox(
@@ -147,7 +146,7 @@ class _HomeState extends State<Home> {
                   Expanded(
                     flex: 2,
                     child: Text(
-                      'Previous Purchases',
+                      'Recent Purchases',
                       textScaleFactor: 1.45,
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
@@ -162,15 +161,10 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              ProductCard(
-                product: {
-                  'image': 'assets/sample/item1.png',
-                  'name': 'Ketchup',
-                  'price': 'N 2,000.00',
-                  'store': 'Shoprite'
-                },
-                onTap: () => print('Add to cart'),
+              SizedBox(
+                height: 10,
               ),
+              PreviousPurchases(),
               SizedBox(
                 height: 10,
               ),

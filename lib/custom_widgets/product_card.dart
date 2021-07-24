@@ -14,6 +14,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 180,
+      height: 200,
       padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
         color: Resources.LIGHT_BLUE_COLOR,
@@ -38,7 +39,7 @@ class ProductCard extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: Text(product['name']??''),
+                      child: Text(product['name']??'',overflow: TextOverflow.ellipsis,),
                     ),
                   ],
                 ),
@@ -72,7 +73,6 @@ class ProductCard extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 3,)
         ],
       ),
     );

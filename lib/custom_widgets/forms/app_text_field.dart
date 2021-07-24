@@ -9,6 +9,7 @@ class AppTextField extends ReactiveTextField {
     String hintText = '',
     int maxLines = 1,
     int? maxLength,
+    Widget? prefixIcon,
     TextInputType keyboardType = TextInputType.text,
     Map<String, String> validationMessages = const {},
     bool obscureText = false,
@@ -26,6 +27,17 @@ class AppTextField extends ReactiveTextField {
               ..addAll(validationMessages);
           },
           decoration: inputDecoration.copyWith(
-              hintText: hintText, fillColor: Resources.LIGHTER_BLUE_COLOR),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(color: Colors.grey, width: 2.0),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(color: Colors.grey[200]!, width: 2.0),
+            ),
+            fillColor:Color(0xffF4f4f4),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+            prefixIcon: prefixIcon,
+              hintText: hintText,),
         );
 }

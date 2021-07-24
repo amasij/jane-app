@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.simonjosephamasi.jane_app">
    <application
-        android:label="jane_app"
+        android:label="Jane"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

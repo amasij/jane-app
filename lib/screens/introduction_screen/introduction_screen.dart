@@ -1,13 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 import 'package:jane_app/constants/image_constant.dart';
+import 'package:jane_app/custom_widgets/app_dots_decorator.dart';
+import 'package:jane_app/custom_widgets/app_dots_indicator.dart';
 import 'package:jane_app/custom_widgets/logo_text.dart';
 import 'package:jane_app/resources/resources.dart';
 import 'package:jane_app/routes/routes.dart';
-import 'package:jane_app/utils/utils.dart';
 
 class IntroductionScreens extends StatefulWidget {
   @override
@@ -15,6 +14,10 @@ class IntroductionScreens extends StatefulWidget {
 }
 
 class _IntroductionScreenState extends State<IntroductionScreens> {
+  PageController controller = PageController();
+  int currentIndex = 0;
+  double _currentPage = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,207 +31,282 @@ class _IntroductionScreenState extends State<IntroductionScreens> {
           ],
         ),
       ),
-      body: Container(
-        padding: EdgeInsets.zero,
-        margin: EdgeInsets.zero,
-        child: IntroductionScreen(
-          globalBackgroundColor: Colors.white,
-          isTopSafeArea: true,
-          isBottomSafeArea: true,
-          dotsDecorator: DotsDecorator(
-            activeColor: Resources.PRIMARY_TEXT_COLOR,
-            activeSize: Size(20,7),
-            activeShape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+      body: Stack(
+        children: [
+          NotificationListener<ScrollNotification>(
+            onNotification: _onScroll,
+            child: PageView(
+              controller: controller,
+              onPageChanged: _onPageChanged,
+              scrollDirection: Axis.horizontal,
+              children: [
+                getFirstPage(),
+                getSecondPage(),
+              ],
+              physics: BouncingScrollPhysics(),
             ),
           ),
-          pages: getPages(),
-          showNextButton: true,
-          dotsFlex: 1,
-          skipFlex: 0,
-          nextFlex: 5,
-          controlsPadding: EdgeInsets.only(bottom: 40, left: 0, right: 0),
-          controlsMargin: EdgeInsets.zero,
-          done: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 40, vertical: 15),
-                decoration: BoxDecoration(
-                  color: Resources.PRIMARY_COLOR,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
+          Positioned(
+            bottom: 80,
+            left: 0,
+            right: 0,
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.zero,
+                  margin: EdgeInsets.only(left: 20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: Center(
+                            child: AppDotsIndicator(
+                                reversed: false,
+                                dotsCount: 2,
+                                position: _currentPage,
+                                decorator: AppDotsDecorator(
+                                  activeColor: Resources.PRIMARY_TEXT_COLOR,
+                                  activeSize: Size(20, 7),
+                                  activeShape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                onTap: (_) {})),
+                      ),
+                      Expanded(
+                        flex: 5,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                if (currentIndex == 0) {
+                                  controller.animateToPage(1,
+                                      duration: Duration(milliseconds: 500),
+                                      curve: Curves.easeIn);
+                                } else {
+                                  Navigator.pushReplacementNamed(
+                                      context, Routes.HOME_SCREEN);
+                                }
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 50, vertical: 20),
+                                decoration: BoxDecoration(
+                                  color: Resources.PRIMARY_COLOR,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(10),
+                                    bottomLeft: Radius.circular(10),
+                                  ),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    SizedBox(width: currentIndex == 0 ?30:0,),
+                                    Text(
+                                      currentIndex == 0
+                                          ? 'Next'
+                                          : 'Get Started',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    currentIndex == 0
+                                        ? Icon(
+                                            Icons.arrow_forward_sharp,
+                                            color: Colors.white,
+                                            size: 18,
+                                          )
+                                        : SizedBox.shrink()
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      'Get Started',
-                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
-          next: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+        ],
+      ),
+    );
+  }
+
+  Widget getFirstPage() {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                decoration: BoxDecoration(
-                  color: Resources.PRIMARY_COLOR,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                  ),
-                ),
-                child: Row(
-               mainAxisAlignment: MainAxisAlignment.spaceAround,
+              SizedBox(
+                height: 20,
+              ),
+              Image.asset(ImageConstant.INTRO_SHOP_IMAGE),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: Resources.CONTENT_PADDING,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      'Next',
-                      style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Discover your',
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                height: 1),
+                            textScaleFactor: 2.3,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
-                      width: 10,
+                      height: 9,
                     ),
-                    Icon(
-                      Icons.arrow_forward_sharp,
-                      color: Colors.white,
-                      size: 18,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'favorite products',
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                height: 1),
+                            textScaleFactor: 2.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Search, discover, order products',
+                            style: TextStyle(
+                              color: Resources.GREY_TEXT_COLOR,
+                            ),
+                            textScaleFactor: 1.3,
+                          ),
+                        ),
+                      ],
                     )
                   ],
                 ),
               ),
             ],
           ),
-          onDone: () {
-            Navigator.pushReplacementNamed(context, Routes.HOME_SCREEN);
-          },
         ),
       ),
     );
   }
 
-  List<PageViewModel> getPages() {
-    return [
-      PageViewModel(
-        decoration: PageDecoration(
-          imagePadding: EdgeInsets.zero,
-          imageFlex: 2,
-
-        ),
-        image: Image.asset(
-          ImageConstant.INTRO_WOMAN_IMAGE,
-          fit: BoxFit.fill,
-        ),
-        titleWidget: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Discover your',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.1,
-                        height: 1),
-                    textScaleFactor: 2.6,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'favorite products',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.1,
-                    ),
-                    textScaleFactor: 2.6,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        bodyWidget: Row(
-          children: [
-            Expanded(
-              child: Text(
-                'Search, discover, order products',
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                ),
-                textScaleFactor: 1.3,
+  Widget getSecondPage() {
+    return Scaffold(
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 20,
               ),
-            ),
-          ],
+              Image.asset(ImageConstant.INTRO_DELIVERY_IMAGE),
+              SizedBox(
+                height: 30,
+              ),
+              Padding(
+                padding: Resources.CONTENT_PADDING,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Get them delivered',
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                height: 1),
+                            textScaleFactor: 2.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 9,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'to you fast',
+                            style: TextStyle(
+                                fontFamily: 'Roboto',
+                                fontWeight: FontWeight.bold,
+                                height: 1),
+                            textScaleFactor: 2.3,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Let us handle the delivery and tracking ',
+                            style: TextStyle(
+                              color: Resources.GREY_TEXT_COLOR,
+                            ),
+                            textScaleFactor: 1.3,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
-      PageViewModel(
-        decoration: PageDecoration(
-          imagePadding: EdgeInsets.zero,
-          imageFlex: 2,
+    );
+  }
 
-        ),
-        image: Image.asset(
-          ImageConstant.INTRO_MAN_IMAGE,
-          fit: BoxFit.fill,
-        ),
-        titleWidget: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    'Get them delivered',
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        letterSpacing: 1.1,
-                        height: 1),
-                    textScaleFactor: 2.6,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    ' to you fast',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      letterSpacing: 1.1,
-                    ),
-                    textScaleFactor: 2.6,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-        bodyWidget: Row(
-          children: [
-            Expanded(
-              child: Text(
-                'Let us handle the delivery and tracking ',
-                style: TextStyle(
-                  fontWeight: FontWeight.w300,
-                ),
-                textScaleFactor: 1.3,
-              ),
-            ),
-          ],
-        ),
-      ),
-    ];
+  void _onPageChanged(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
+  bool _onScroll(ScrollNotification notification) {
+    final metrics = notification.metrics;
+    if (metrics is PageMetrics && metrics.page != null) {
+      if (mounted) {
+        setState(() => _currentPage = metrics.page!);
+      }
+    }
+    return false;
   }
 }

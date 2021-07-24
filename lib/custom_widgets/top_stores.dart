@@ -30,7 +30,6 @@ class _TopStoresState extends State<TopStores> {
           padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            print(stores[index]);
             return StoreCard(
               store: stores[index],
             );

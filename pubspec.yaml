@@ -26,7 +26,6 @@ dependencies:
   flutter_zoom_drawer: ^2.1.0
   pretty_dio_logger: ^1.1.1
   flutter_svg: ^0.22.0
-  introduction_screen: ^2.1.0
   reactive_forms: ^10.5.0
 
 
@@ -55,6 +54,7 @@ flutter:
      - assets/images/
      - assets/sample/
      - assets/images/general/
+     - assets/images/background/
      - assets/images/icons/
      - assets/svg/
 

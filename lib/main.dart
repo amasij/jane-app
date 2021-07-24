@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
         inputDecorationTheme: InputDecorationTheme(),
         iconTheme: IconThemeData(color: Colors.white),
         textTheme: TextTheme(bodyText2:TextStyle(color: Resources.PRIMARY_TEXT_COLOR)),
-        fontFamily: 'Poppins',
+        fontFamily: 'Roboto',
         primarySwatch: Utils.generateSwatch(0xFFFF7360, 255, 115, 96),
       ),
       onGenerateRoute: Routes.generateRoute,
