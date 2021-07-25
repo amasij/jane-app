@@ -6,6 +6,8 @@ class ImageConstant{
   static final String INTRO_DELIVERY_IMAGE = 'assets/images/general/intro_delivery.png';
   static final String INTRO_MAN_IMAGE = 'assets/images/general/intro_man.png';
   static final String LOGIN_BACKGROUND_IMAGE = 'assets/images/background/bg1.png';
+  static final String SIGNUP_BACKGROUND_IMAGE = 'assets/images/background/bg2.png';
+  static final String RESET_PASSWORD_BACKGROUND_IMAGE = 'assets/images/background/bg3.png';
   static final String INTRO_WOMAN_IMAGE_SVG = 'assets/svg/intro_woman.svg';
   static final String DRAWER_ICON = 'assets/svg/drawer-icon.svg';
   static final String CART_ICON = 'assets/svg/cart-icon.svg';
@@ -13,5 +15,7 @@ class ImageConstant{
   static final String CART_ITEM_ICON = 'assets/svg/cart-item-icon.svg';
   static final String BACK_ICON = 'assets/svg/back-icon.svg';
   static final String FILTER_ICON = 'assets/svg/filter.svg';
+  static final String RESET_PASSWORD_SVG = 'assets/svg/reset_password.svg';
   static final String INTRO_WOMAN_IMAGE = 'assets/images/general/intro_woman.png';
+  static final String NO_CART_IMAGE = 'assets/images/general/no-cart.png';
 }

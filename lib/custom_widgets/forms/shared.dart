@@ -19,11 +19,11 @@ InputDecoration inputDecoration = InputDecoration(
   ),
   errorBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),
-    borderSide: BorderSide(color: Colors.red, width: 2.0),
+    borderSide: BorderSide(color: Resources.PRIMARY_COLOR, width: 2.0),
   ),
   focusedErrorBorder: OutlineInputBorder(
     borderRadius: BorderRadius.circular(10),
-    borderSide: BorderSide(color: Colors.red, width: 2.0),
+    borderSide: BorderSide(color: Resources.PRIMARY_COLOR, width: 2.0),
   ),
 );
 

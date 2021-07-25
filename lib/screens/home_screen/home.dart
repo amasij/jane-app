@@ -51,14 +51,14 @@ class _HomeState extends State<Home> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: Resources.CONTENT_PADDING,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              Row(
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: Resources.CONTENT_PADDING,
+              child: Row(
                 children: [
                   Text(
                     'Hey Jason,',
@@ -69,10 +69,13 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 15,
-              ),
-              Row(
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: Resources.CONTENT_PADDING,
+              child: Row(
                 children: [
                   Text(
                     'Discover your favorite products?',
@@ -80,10 +83,13 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 30,
-              ),
-              GestureDetector(
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: Resources.CONTENT_PADDING,
+              child: GestureDetector(
                 onTap: () => Navigator.pushNamed(context, Routes.SEARCH_SCREEN),
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
@@ -110,10 +116,13 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 40,
-              ),
-              Row(
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: Resources.CONTENT_PADDING,
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
@@ -133,14 +142,17 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 20,
-              ),
-              TopStores(),
-              SizedBox(
-                height: 30,
-              ),
-              Row(
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            TopStores(),
+            SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: Resources.CONTENT_PADDING,
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(
@@ -161,15 +173,15 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 10,
-              ),
-              PreviousPurchases(),
-              SizedBox(
-                height: 10,
-              ),
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            PreviousPurchases(),
+            SizedBox(
+              height: 10,
+            ),
+          ],
         ),
       ),
     );

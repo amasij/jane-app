@@ -9,16 +9,26 @@ import 'package:jane_app/routes/routes.dart';
 import 'package:jane_app/utils/utils.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignupScreenState createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
+  bool showPassword = true;
   FormGroup _form = FormGroup({
     'email': FormControl(
         value: '', validators: [Validators.required, Validators.email]),
-    'password': FormControl(value: '', validators: [Validators.required]),
+    'firstName': FormControl(value: '', validators: [
+      Validators.required,
+    ]),
+    'lastName': FormControl(value: '', validators: [
+      Validators.required,
+    ]),
+    'password': FormControl(value: '', validators: [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
   });
 
   @override
@@ -29,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(ImageConstant.LOGIN_BACKGROUND_IMAGE),
+                image: AssetImage(ImageConstant.SIGNUP_BACKGROUND_IMAGE),
                 fit: BoxFit.cover,
               ),
             ),
@@ -55,13 +65,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          'Hey,',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, letterSpacing: -1),
-                          textScaleFactor: 2.1,
-                        ),
-                      )
+                          child: Text(
+                        'Create a',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, letterSpacing: -1),
+                        textScaleFactor: 2.1,
+                      ))
                     ],
                   ),
                   SizedBox(
@@ -71,7 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Expanded(
                         child: Text(
-                          'Let\'s sign in',
+                          'New Account',
                           style: TextStyle(
                               fontWeight: FontWeight.w700, letterSpacing: -1),
                           textScaleFactor: 2.1,
@@ -85,20 +94,20 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: [
                       Expanded(
-                        flex: 2,
+                        flex: 4,
                         child: Text(
-                          'If you are new /',
+                          'Already have an account? /',
                           style: TextStyle(color: Resources.GREY_TEXT_COLOR),
                           textScaleFactor: 1.2,
                         ),
                       ),
                       Expanded(
-                        flex: 3,
+                        flex: 2,
                         child: GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, Routes.SIGNUP_SCREEN),
+                          onTap: () =>
+                              Navigator.pushNamed(context, Routes.LOGIN_SCREEN),
                           child: Text(
-                            'Create New',
+                            'Sign in',
                             style: TextStyle(fontWeight: FontWeight.bold),
                             textScaleFactor: 1.2,
                           ),
@@ -107,7 +116,27 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 50,
+                  ),
+                  AppTextField(
+                    formControlName: 'lastName',
+                    hintText: 'Surname',
+                    validationMessages: {
+                      ValidationMessage.required: 'Your surname is required'
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  AppTextField(
+                    formControlName: 'firstName',
+                    hintText: 'First Name',
+                    validationMessages: {
+                      ValidationMessage.required: 'Your first name is required'
+                    },
+                  ),
+                  SizedBox(
+                    height: 20,
                   ),
                   AppTextField(
                     formControlName: 'email',
@@ -122,38 +151,23 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   AppTextField(
                     formControlName: 'password',
-                    obscureText: true,
+                    obscureText: showPassword,
                     hintText: 'Password',
+                    suffix: InkWell(
+                      onTap: () {
+                        setState(() {
+                          showPassword = !showPassword;
+                        });
+                      },
+                      child: Icon(
+                        !showPassword ? Icons.visibility : Icons.visibility_off,
+                        color: Resources.PRIMARY_COLOR,
+                      ),
+                    ),
                     validationMessages: {
-                      ValidationMessage.required: 'Your password is required'
+                      ValidationMessage.required: 'Your password is required',
+                      ValidationMessage.minLength:'Minimum of 6 characters required'
                     },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          'Forgot password? /',
-                          style: TextStyle(color: Resources.GREY_TEXT_COLOR),
-                          textScaleFactor: 1.2,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, Routes.RESET_PASSWORD_SCREEN),
-                          child: Text(
-                            'Reset',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textScaleFactor: 1.2,
-                          ),
-                        ),
-                      ),
-                    ],
                   ),
                   SizedBox(
                     height: 50,
@@ -163,11 +177,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       Expanded(
                         child: AppButton(
                           onTap: () {
-                            // _form.markAllAsTouched();
-                            Navigator.pushReplacementNamed(
-                                context, Routes.HOME_SCREEN);
+                            _form.markAllAsTouched();
                           },
-                          label: 'Login',
+                          label: 'Sign up',
                         ),
                       ),
                     ],

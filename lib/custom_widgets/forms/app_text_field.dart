@@ -10,6 +10,7 @@ class AppTextField extends ReactiveTextField {
     int maxLines = 1,
     int? maxLength,
     Widget? prefixIcon,
+    Widget? suffix,
     TextInputType keyboardType = TextInputType.text,
     Map<String, String> validationMessages = const {},
     bool obscureText = false,
@@ -36,8 +37,9 @@ class AppTextField extends ReactiveTextField {
               borderSide: BorderSide(color: Colors.grey[200]!, width: 2.0),
             ),
             fillColor:Color(0xffF4f4f4),
-            contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 20),
+            contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 18),
             prefixIcon: prefixIcon,
+              suffix: suffix,
               hintText: hintText,),
         );
 }

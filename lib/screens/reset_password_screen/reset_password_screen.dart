@@ -9,27 +9,57 @@ import 'package:jane_app/routes/routes.dart';
 import 'package:jane_app/utils/utils.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
-class LoginScreen extends StatefulWidget {
+class ResetPasswordScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _ResetPasswordScreenState createState() => _ResetPasswordScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   FormGroup _form = FormGroup({
     'email': FormControl(
         value: '', validators: [Validators.required, Validators.email]),
-    'password': FormControl(value: '', validators: [Validators.required]),
   });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        onPressed: () {},
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.help_outline,
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 5,
+            ),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    'Help',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Resources.GREY_TEXT_COLOR),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(ImageConstant.LOGIN_BACKGROUND_IMAGE),
+                image:
+                    AssetImage(ImageConstant.RESET_PASSWORD_BACKGROUND_IMAGE),
                 fit: BoxFit.cover,
               ),
             ),
@@ -55,13 +85,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: [
                       Expanded(
-                        child: Text(
-                          'Hey,',
-                          style: TextStyle(
-                              fontWeight: FontWeight.w700, letterSpacing: -1),
-                          textScaleFactor: 2.1,
-                        ),
-                      )
+                          child: Text(
+                        'Reset',
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700, letterSpacing: -1),
+                        textScaleFactor: 2.1,
+                      ))
                     ],
                   ),
                   SizedBox(
@@ -71,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Expanded(
                         child: Text(
-                          'Let\'s sign in',
+                          'Password',
                           style: TextStyle(
                               fontWeight: FontWeight.w700, letterSpacing: -1),
                           textScaleFactor: 2.1,
@@ -85,29 +114,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   Row(
                     children: [
                       Expanded(
-                        flex: 2,
                         child: Text(
-                          'If you are new /',
+                          'Enter the email associated with your account and we’ll send an email with instruction to reset your password',
                           style: TextStyle(color: Resources.GREY_TEXT_COLOR),
                           textScaleFactor: 1.2,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, Routes.SIGNUP_SCREEN),
-                          child: Text(
-                            'Create New',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textScaleFactor: 1.2,
-                          ),
                         ),
                       ),
                     ],
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 50,
                   ),
                   AppTextField(
                     formControlName: 'email',
@@ -118,44 +134,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                   ),
                   SizedBox(
-                    height: 20,
-                  ),
-                  AppTextField(
-                    formControlName: 'password',
-                    obscureText: true,
-                    hintText: 'Password',
-                    validationMessages: {
-                      ValidationMessage.required: 'Your password is required'
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Text(
-                          'Forgot password? /',
-                          style: TextStyle(color: Resources.GREY_TEXT_COLOR),
-                          textScaleFactor: 1.2,
-                        ),
-                      ),
-                      Expanded(
-                        flex: 3,
-                        child: GestureDetector(
-                          onTap: () => Navigator.pushNamed(
-                              context, Routes.RESET_PASSWORD_SCREEN),
-                          child: Text(
-                            'Reset',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textScaleFactor: 1.2,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
                     height: 50,
                   ),
                   Row(
@@ -164,12 +142,44 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: AppButton(
                           onTap: () {
                             // _form.markAllAsTouched();
-                            Navigator.pushReplacementNamed(
-                                context, Routes.HOME_SCREEN);
+                            Navigator.pushNamedAndRemoveUntil(
+                                context,
+                                Routes.RESET_CONFIRMATION_SCREEN,
+                                (_) => _.isFirst);
                           },
-                          label: 'Login',
+                          label: 'Reset Password',
                         ),
                       ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () => Navigator.pop(context),
+                        child: Container(
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.arrow_back_rounded,
+                                color: Resources.PRIMARY_COLOR,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text(
+                                'Go back to Login',
+                                textScaleFactor: 1.2,
+                                style:
+                                    TextStyle(color: Resources.PRIMARY_COLOR),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   )
                 ],
