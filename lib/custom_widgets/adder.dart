@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:jane_app/resources/resources.dart';
 
 class Adder extends StatefulWidget {
+  final bool isLarge;
+  Adder({this.isLarge = true});
   @override
   _AdderState createState() => _AdderState();
 }
@@ -28,7 +30,7 @@ class _AdderState extends State<Adder> {
             },
             child: Icon(
               Icons.remove,
-              size: 35,
+              size: widget.isLarge ? 35:15,
               color:Resources.PRIMARY_COLOR,
             ),
           ),
@@ -38,7 +40,7 @@ class _AdderState extends State<Adder> {
           Text(
             '$quantity',
             style: TextStyle(fontWeight: FontWeight.bold),
-            textScaleFactor: 1.5,
+            textScaleFactor: widget.isLarge ? 1.5:1,
           ),
           SizedBox(
             width: 15,
@@ -51,7 +53,7 @@ class _AdderState extends State<Adder> {
             },
             child: Icon(
               Icons.add,
-              size: 35,
+              size: widget.isLarge ? 35:15,
               color: Resources.PRIMARY_COLOR,
             ),
           ),

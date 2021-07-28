@@ -133,11 +133,15 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Expanded(
-                    child: Text(
-                      'See all',
-                      textAlign: TextAlign.right,
-                      textScaleFactor: 1.2,
-                      style: TextStyle(color: Resources.PRIMARY_COLOR),
+                    child: GestureDetector(
+                      onTap: () =>
+                          Navigator.pushNamed(context, Routes.STORES_SCREEN),
+                      child: Text(
+                        'See all',
+                        textAlign: TextAlign.right,
+                        textScaleFactor: 1.2,
+                        style: TextStyle(color: Resources.PRIMARY_COLOR),
+                      ),
                     ),
                   ),
                 ],

@@ -51,7 +51,8 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
       'name': 'Ketchup hghuhgugy',
       'price': 'N 2,000.00',
       'store': 'Shoprite'
-    },   {
+    },
+    {
       'image': 'assets/sample/item1.png',
       'name': 'Grand loaf',
       'price': 'N 9000.00',
@@ -74,7 +75,8 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
       'name': 'Ketchup hghuhgugy',
       'price': 'N 2,000.00',
       'store': 'Shoprite'
-    },   {
+    },
+    {
       'image': 'assets/sample/item1.png',
       'name': 'Grand loaf',
       'price': 'N 9000.00',
@@ -141,6 +143,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                     child: Expanded(
                       flex: 6,
                       child: AppTextFieldSecondary(
+                        hintText: 'Search product',
                         formControlName: 'search',
                         prefixIcon: Icon(
                           Icons.search,
@@ -193,62 +196,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                 Expanded(
                   child: Container(
                     padding: Resources.CONTENT_PADDING,
-                    child: StaggeredGridView.countBuilder(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 20,
-                        mainAxisSpacing: 20,
-                        itemCount: products.length + 1,
-                        itemBuilder: (context, index) {
-                          if (index == 0) {
-                            return Container(
-                              child: Column(
-                                children: [
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            'Found',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                letterSpacing: -1),
-                                            textScaleFactor: 2.1,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    child: Row(
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            '23 Products',
-                                            textAlign: TextAlign.start,
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                letterSpacing: -1),
-                                            textScaleFactor: 2.1,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }
-                          return ProductCard(
-                            product: products[index - 1],
-                            onTap: () {},
-                          );
-                        },
-                        staggeredTileBuilder: (index) {
-                          return StaggeredTile.count(1, index == 0 ? .5 : 1.25);
-                        }),
+                    child: false ? hasProducts() : noProduct(),
                   ),
                 ),
               ],
@@ -275,5 +223,106 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
       selectedColor: Color(0x19FF7360),
       backgroundColor: Color(0x19FF7360),
     );
+  }
+
+  Widget noProduct() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 40,
+        ),
+        SvgPicture.asset(ImageConstant.NO_PRODUCT_SVG),
+        SizedBox(height: 50,),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                'No Products Found',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color(0xaa06102B),
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: -1),
+                textScaleFactor: 1.7,
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10,),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                'Try updating the filter or searching for a different product.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Resources.GREY_TEXT_COLOR,
+                    fontWeight: FontWeight.w500,
+                    letterSpacing: -1),
+                textScaleFactor: 1.2,
+              ),
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
+  Widget hasProducts() {
+    return StaggeredGridView.countBuilder(
+        shrinkWrap: true,
+        physics: NeverScrollableScrollPhysics(),
+        crossAxisCount: 2,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 20,
+        itemCount: products.length + 1,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Container(
+              child: Column(
+                children: [
+                  Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Found',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, letterSpacing: -1),
+                            textScaleFactor: 2.1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Container(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '23 Products',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700, letterSpacing: -1),
+                            textScaleFactor: 2.1,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+          return ProductCard(
+            product: products[index - 1],
+            onTap: () {},
+          );
+        },
+        staggeredTileBuilder: (index) {
+          return StaggeredTile.count(1, index == 0 ? .5 : 1.25);
+        });
   }
 }

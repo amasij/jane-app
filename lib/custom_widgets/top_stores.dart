@@ -13,13 +13,15 @@ class _TopStoresState extends State<TopStores> {
     {'name': 'Jumia', 'image': 'assets/sample/store1.png'},
     {'name': 'Supermat', 'image': 'assets/sample/store2.png'},
     {'name': 'Shoprite', 'image': 'assets/sample/store3.png'},
+    {'name': 'Miniso', 'image': 'assets/sample/store4.png'},
+    {'name': 'H-Medix', 'image': 'assets/sample/store5.png'},
+    {'name': 'Shoprite', 'image': 'assets/sample/store3.png'},
+    {'name': 'Miniso', 'image': 'assets/sample/store4.png'},
     {'name': 'Supermat', 'image': 'assets/sample/store2.png'},
     {'name': 'Jumia', 'image': 'assets/sample/store1.png'},
     {'name': 'Supermat', 'image': 'assets/sample/store2.png'},
-    {'name': 'Jumia', 'image': 'assets/sample/store1.png'},
-    {'name': 'Supermat', 'image': 'assets/sample/store2.png'},
-    {'name': 'Jumia', 'image': 'assets/sample/store1.png'},
-    {'name': 'Supermat', 'image': 'assets/sample/store2.png'},
+    {'name': 'Shoprite', 'image': 'assets/sample/store3.png'},
+    {'name': 'Miniso', 'image': 'assets/sample/store4.png'},
   ];
 
   @override
