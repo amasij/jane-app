@@ -85,8 +85,10 @@ class _IntroductionScreenState extends State<IntroductionScreens> {
                                       duration: Duration(milliseconds: 500),
                                       curve: Curves.easeIn);
                                 } else {
+                                  // Navigator.pushReplacementNamed(
+                                  //     context, Routes.HOME_SCREEN);
                                   Navigator.pushReplacementNamed(
-                                      context, Routes.HOME_SCREEN);
+                                      context, Routes.LOGIN_SCREEN);
                                 }
                               },
                               child: Container(

@@ -8,6 +8,7 @@ import 'package:jane_app/custom_widgets/adder.dart';
 import 'package:jane_app/custom_widgets/app_button.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/resources/resources.dart';
+import 'package:jane_app/routes/routes.dart';
 import 'package:jane_app/utils/utils.dart';
 
 class CartScreen extends StatefulWidget {
@@ -182,7 +183,9 @@ class _CartScreenState extends State<CartScreen> {
                     children: [
                       Expanded(
                         child: AppButton(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, Routes.CHECKOUT_SCREEN);
+                          },
                           useWidget: true,
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 20),

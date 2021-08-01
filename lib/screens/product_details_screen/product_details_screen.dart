@@ -6,6 +6,7 @@ import 'package:jane_app/custom_widgets/adder.dart';
 import 'package:jane_app/custom_widgets/app_button.dart';
 import 'package:jane_app/custom_widgets/app_dots_decorator.dart';
 import 'package:jane_app/custom_widgets/app_dots_indicator.dart';
+import 'package:jane_app/custom_widgets/cart_buttton.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/resources/resources.dart';
 
@@ -32,10 +33,7 @@ class _ProductDetailsState extends State<ProductDetailsScreen> {
               svg: ImageConstant.BACK_ICON,
               onTap: () => Navigator.pop(context),
             ),
-            SvgButton(
-              svg: ImageConstant.CART_ACTIVE_ICON,
-              onTap: () {},
-            ),
+            CartButton(hasItem: true,),
           ],
         ),
       ),

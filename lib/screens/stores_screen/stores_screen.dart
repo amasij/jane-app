@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jane_app/constants/image_constant.dart';
+import 'package:jane_app/custom_widgets/cart_buttton.dart';
 import 'package:jane_app/custom_widgets/store_card.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/resources/resources.dart';
@@ -41,10 +42,7 @@ class _StoresScreenState extends State<StoresScreen> {
               onTap: () => Navigator.pop(context),
             ),
             Text('Top stores'),
-            SvgButton(
-              svg: ImageConstant.CART_ACTIVE_ICON,
-              onTap: () {},
-            ),
+            CartButton(),
           ],
         ),
       ),

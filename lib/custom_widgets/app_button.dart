@@ -26,9 +26,10 @@ class AppButton extends StatelessWidget {
           padding,
         ),
         elevation: MaterialStateProperty.all<double>(0),
-        foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
-        backgroundColor:
-            MaterialStateProperty.all<Color>(Resources.PRIMARY_COLOR),
+        foregroundColor: MaterialStateProperty.all<Color>(
+            isTransparent ? Resources.PRIMARY_COLOR : Colors.white),
+        backgroundColor: MaterialStateProperty.all<Color>(
+            isTransparent ? Color(0xffFFF8F7) : Resources.PRIMARY_COLOR),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),

@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Timer(Duration(seconds: 1), () {
       // Navigator.pushReplacementNamed(context, Routes.INTRODUCTION_SCREEN);
-      Navigator.pushReplacementNamed(context, Routes.ORDER_CONFIRMATION_SCREEN);
+      Navigator.pushReplacementNamed(context, Routes.ORDER_HISTORY_SCREEN);
     });
     super.initState();
   }

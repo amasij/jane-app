@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jane_app/constants/image_constant.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/resources/resources.dart';
+import 'package:jane_app/routes/routes.dart';
 
 class SelectAddressScreen extends StatefulWidget {
   @override
@@ -52,7 +53,9 @@ class _SelectAddressState extends State<SelectAddressScreen> {
                 height: 20,
               ),
               GestureDetector(
-                onTap: () => Navigator.pop(context),
+                onTap: () {
+                  Navigator.pushNamed(context, Routes.ADD_ADDRESS_SCREEN);
+                },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 15),
                   decoration: BoxDecoration(
@@ -78,7 +81,7 @@ class _SelectAddressState extends State<SelectAddressScreen> {
                 height: 20,
               ),
               ListView.separated(
-                shrinkWrap: true,
+                  shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return addressCard(index);
@@ -107,7 +110,8 @@ class _SelectAddressState extends State<SelectAddressScreen> {
                 color: isDefault ? Resources.PRIMARY_COLOR : Colors.grey[200]!),
             borderRadius: BorderRadius.circular(10),
           ),
-          padding: EdgeInsets.only(top: 15, left: 15, right: 15, bottom: isDefault ? 20:0),
+          padding: EdgeInsets.only(
+              top: 15, left: 15, right: 15, bottom: isDefault ? 20 : 0),
           child: Column(
             children: [
               Row(
@@ -195,6 +199,9 @@ class _SelectAddressState extends State<SelectAddressScreen> {
                           ),
                           Divider(
                             thickness: .8,
+                            indent: 0,
+                            endIndent: 0,
+                            height: 0,
                           ),
                           GestureDetector(
                             onTap: () {

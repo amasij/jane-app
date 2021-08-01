@@ -5,6 +5,7 @@ import 'package:jane_app/custom_widgets/app_button.dart';
 import 'package:jane_app/custom_widgets/forms/app_text_field_secondary.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/resources/resources.dart';
+import 'package:jane_app/routes/routes.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class CheckoutScreen extends StatefulWidget {
@@ -91,14 +92,17 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                   ],
                                 ),
                               ),
-                              Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    color: Resources.PRIMARY_COLOR),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 17,
+                              GestureDetector(
+                                onTap: ()=>Navigator.pushNamed(context, Routes.SELECT_ADDRESS_SCREEN),
+                                child: Container(
+                                  padding: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Resources.PRIMARY_COLOR),
+                                  child: Icon(
+                                    Icons.arrow_forward_ios,
+                                    size: 17,
+                                  ),
                                 ),
                               )
                             ],
@@ -226,7 +230,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                       children: [
                         Expanded(
                           child: AppButton(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.pushNamed(context, Routes.ORDER_CONFIRMATION_SCREEN);
+                            },
                             useWidget: true,
                             child: Container(
                               padding: EdgeInsets.symmetric(horizontal: 20),

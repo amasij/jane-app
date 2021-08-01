@@ -12,13 +12,13 @@ class SvgButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        SvgPicture.asset(svg),
         GestureDetector(
           onTap: onTap,
           child: Container(
-            width: 25,
-            height: 25,
+            width: 30,
+            height: 30,
             color: Colors.transparent,
+            child: Center(child: SvgPicture.asset(svg),),
           ),
         ),
       ],

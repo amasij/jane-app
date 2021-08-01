@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:jane_app/constants/image_constant.dart';
+import 'package:jane_app/custom_widgets/cart_buttton.dart';
 import 'package:jane_app/custom_widgets/logo_text.dart';
 import 'package:jane_app/custom_widgets/previous_purchases.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
@@ -43,10 +44,7 @@ class _HomeState extends State<Home> {
             LogoText(
               textScaleFactor: 1.3,
             ),
-            SvgButton(
-              svg: ImageConstant.CART_ICON,
-              onTap: () {},
-            ),
+            CartButton(),
           ],
         ),
       ),

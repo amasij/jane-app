@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:jane_app/screens/add_address_screen/add_address_screen.dart';
 import 'package:jane_app/screens/cart_screen/cart_screen.dart';
 import 'package:jane_app/screens/checkout_screen/checkout_screen.dart';
 import 'package:jane_app/screens/home_screen/home_screen.dart';
 import 'package:jane_app/screens/introduction_screen/introduction_screen.dart';
 import 'package:jane_app/screens/login_screen/login_screen.dart';
 import 'package:jane_app/screens/order_confirmation_screen/order_confirmation_screen.dart';
+import 'package:jane_app/screens/order_history_screen/order_history_screen.dart';
 import 'package:jane_app/screens/product_details_screen/product_details_screen.dart';
 import 'package:jane_app/screens/reset_password_screen/reset_confirmation_screen.dart';
 import 'package:jane_app/screens/reset_password_screen/reset_password_screen.dart';
@@ -32,6 +34,8 @@ class Routes {
   static const String CHECKOUT_SCREEN = '/checkout-screen';
   static const String SELECT_ADDRESS_SCREEN = '/select-address-screen';
   static const String ORDER_CONFIRMATION_SCREEN = '/order-confirmation-screen';
+  static const String ADD_ADDRESS_SCREEN = '/add-address-screen';
+  static const String ORDER_HISTORY_SCREEN = '/order-history-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -63,8 +67,12 @@ class Routes {
         return MaterialPageRoute(builder: (_) => CheckoutScreen());
       case SELECT_ADDRESS_SCREEN:
         return MaterialPageRoute(builder: (_) => SelectAddressScreen());
-        case ORDER_CONFIRMATION_SCREEN:
+      case ORDER_CONFIRMATION_SCREEN:
         return MaterialPageRoute(builder: (_) => OrderConfirmationScreen());
+      case ADD_ADDRESS_SCREEN:
+        return MaterialPageRoute(builder: (_) => AddAddressScreen());
+      case ORDER_HISTORY_SCREEN:
+        return MaterialPageRoute(builder: (_) => OrderHistoryScreen());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:jane_app/constants/image_constant.dart';
+import 'package:jane_app/custom_widgets/cart_buttton.dart';
 import 'package:jane_app/custom_widgets/logo_text.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/resources/resources.dart';
@@ -49,10 +50,7 @@ class _SearchScreenState extends State<SearchScreen> {
               onTap: () => Navigator.pop(context),
             ),
             Text('Search products'),
-            SvgButton(
-              svg: ImageConstant.CART_ICON,
-              onTap: () {},
-            ),
+            CartButton(),
           ],
         ),
       ),

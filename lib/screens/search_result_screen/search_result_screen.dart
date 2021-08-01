@@ -5,6 +5,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:jane_app/constants/image_constant.dart';
 import 'package:jane_app/custom_widgets/app_button.dart';
+import 'package:jane_app/custom_widgets/cart_buttton.dart';
 import 'package:jane_app/custom_widgets/forms/app_text_field.dart';
 import 'package:jane_app/custom_widgets/forms/app_text_field_secondary.dart';
 import 'package:jane_app/custom_widgets/product_card.dart';
@@ -124,10 +125,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
               onTap: () => Navigator.pop(context),
             ),
             Text('Search products'),
-            SvgButton(
-              svg: ImageConstant.CART_ACTIVE_ICON,
-              onTap: () {},
-            ),
+            CartButton(),
           ],
         ),
       ),
@@ -196,7 +194,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
                 Expanded(
                   child: Container(
                     padding: Resources.CONTENT_PADDING,
-                    child: false ? hasProducts() : noProduct(),
+                    child: true ? hasProducts() : noProduct(),
                   ),
                 ),
               ],
