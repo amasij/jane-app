@@ -14,8 +14,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Timer(Duration(seconds: 1), () {
-      // Navigator.pushReplacementNamed(context, Routes.INTRODUCTION_SCREEN);
-      Navigator.pushReplacementNamed(context, Routes.ORDER_HISTORY_SCREEN);
+      Navigator.pushReplacementNamed(context, Routes.INTRODUCTION_SCREEN);
+      // Navigator.pushReplacementNamed(context, Routes.ADD_ADDRESS_SCREEN);
     });
     super.initState();
   }
@@ -25,6 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Container(
       child: SvgPicture.asset(
         ImageConstant.SPLASH_SCREEN_IMAGE,
+        fit: BoxFit.cover,
       ),
     );
   }

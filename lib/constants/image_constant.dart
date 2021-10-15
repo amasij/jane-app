@@ -20,12 +20,18 @@ class ImageConstant{
   static final String RESET_PASSWORD_SVG = 'assets/svg/reset_password.svg';
   static final String TRASH_SVG = 'assets/svg/trash.svg';
   static final String NO_PRODUCT_SVG = 'assets/svg/no-product.svg';
+  static final String ORDER_WAITING_SVG = 'assets/svg/order-waiting.svg';
   static final String ADDRESS_SELECTED_SVG = 'assets/svg/address-selected.svg';
   static final String INTRO_WOMAN_IMAGE = 'assets/images/general/intro_woman.png';
   static final String NO_CART_IMAGE = 'assets/images/general/no-cart.png';
   static final String ADDRESS_ICON = 'assets/images/icons/address-icon.png';
+
   static final String TOAST_SUCCESS_SVG = 'assets/svg/toast/success.svg';
   static final String TOAST_ERROR_SVG = 'assets/svg/toast/error.svg';
   static final String TOAST_INFO_SVG = 'assets/svg/toast/info.svg';
   static final String TOAST_WARNING_SVG = 'assets/svg/toast/warning.svg';
+
+  static final String ORDER_PENDING_SVG = 'assets/svg/order/pending.svg';
+  static final String ORDER_FAILED_SVG = 'assets/svg/order/failed.svg';
+  static final String ORDER_SUCCESS_SVG = 'assets/svg/order/success.svg';
 }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jane_app/resources/resources.dart';
 import 'package:reactive_forms/reactive_forms.dart';
-import 'package:phone_number/phone_number.dart' as phone;
 
 InputDecoration inputDecoration = InputDecoration(
   contentPadding: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
@@ -56,8 +55,6 @@ Future<Map<String, dynamic>> Function(AbstractControl) validatePhoneFormat =
     return <String, dynamic>{'maxLength': true};
   }
   try {
-    var phoneNumber =
-    await phone.PhoneNumberUtil().parse(e.value, regionCode: 'NG');
     return Future.value(null);
   } catch (ex) {
     print(ex);

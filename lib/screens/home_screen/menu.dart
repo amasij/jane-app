@@ -90,7 +90,9 @@ class Menu extends StatelessWidget {
                       SizedBox(
                         height: 30,
                       ),
-                      item(Icons.inbox_outlined, 'My Orders', () {}),
+                      item(Icons.inbox_outlined, 'My Orders', () {
+                        Navigator.pushNamed(context, Routes.ORDER_HISTORY_SCREEN);
+                      }),
                       SizedBox(
                         height: 40,
                       ),

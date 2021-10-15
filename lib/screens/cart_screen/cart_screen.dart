@@ -159,9 +159,7 @@ class _CartScreenState extends State<CartScreen> {
                         if (snapshot.hasData && snapshot.data!.length > 0) {
                           return ListView.separated(
                             separatorBuilder: (context, index) {
-                              return SizedBox(
-                                height: 15,
-                              );
+                              return SizedBox.shrink();
                             },
                             itemBuilder: (context, index) {
                               return _item(index);
@@ -174,7 +172,7 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
               SizedBox(height: 20,),
-              Expanded(
+             items.isNotEmpty ? Expanded(
                 flex: 1,
                 child: Container(
                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
@@ -209,7 +207,7 @@ class _CartScreenState extends State<CartScreen> {
                     ],
                   ),
                 ),
-              )
+              ):SizedBox.shrink()
             ],
           ),
         ),
@@ -268,7 +266,9 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             Expanded(
               child: AppButton(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(context, Routes.HOME_SCREEN,(_)=>false);
+                },
                 label: 'Start Shopping',
               ),
             )
@@ -278,79 +278,92 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Dismissible _item(int index) {
+  Widget _item(int index) {
     Map<String, dynamic> item = items[index];
-    return Dismissible(
-      background: deleteIcon(),
-      key: Key(item['code']),
-      onDismissed: (direction) {},
-      child: Container(
-        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-        decoration: BoxDecoration(
-          color: Color(0xffF8F8F8),
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Row(
-          children: [
-            Container(
-              // height: 100,
-              child: Image.asset('assets/sample/item-small.png'),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                  color: Color(
-                    0xffE2F2FF,
-                  ),
-                  width: 2,
+    return Column(
+      children: [
+        Dismissible(
+          background: deleteIcon(),
+          key: Key(item['code']),
+          onDismissed: (direction) {
+            items.removeAt(index);
+            setState(() {
+
+            });
+          },
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                decoration: BoxDecoration(
+                  color: Color(0xffF8F8F8),
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              ),
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Expanded(
-              child: Container(
-                // height: 100,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
                   children: [
-                    Text(
-                      item['name'],
-                      style: TextStyle(fontWeight: FontWeight.w500),
-                      textScaleFactor: 1.2,
-                    ),
-                    SizedBox(
-                      height: 2,
-                    ),
-                    Text(
-                      'Jumia official store',
-                      style: TextStyle(color: Resources.GREY_TEXT_COLOR),
-                    ),
-                    SizedBox(
-                      height: 1,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Text(
-                            item['price'],
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 18),
+                    Container(
+                      child: Image.asset('assets/sample/item-small.png'),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        border: Border.all(
+                          color: Color(
+                            0xffE2F2FF,
                           ),
+                          width: 2,
                         ),
-                        Adder(
-                          isLarge: false,
-                        )
-                      ],
+                      ),
+                    ),
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Expanded(
+                      child: Container(
+                        // height: 100,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item['name'],
+                              style: TextStyle(fontWeight: FontWeight.w500),
+                              textScaleFactor: 1.2,
+                            ),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              'Jumia official store',
+                              style: TextStyle(color: Resources.GREY_TEXT_COLOR),
+                            ),
+                            SizedBox(
+                              height: 1,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    item['price'],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold, fontSize: 18),
+                                  ),
+                                ),
+                                Adder(
+                                  isLarge: false,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
+              SizedBox(height: 15,)
+            ],
+          ),
+        )
+      ],
     );
   }
 

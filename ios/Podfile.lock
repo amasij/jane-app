@@ -1,52 +1,44 @@
 PODS:
   - Flutter (1.0.0)
-  - fluttercontactpicker (4.5.1):
+  - geolocator_apple (1.2.0):
     - Flutter
-  - libphonenumber (0.0.1):
+  - google_maps_flutter (0.0.1):
     - Flutter
-    - libPhoneNumber-iOS
-  - libPhoneNumber-iOS (0.9.15)
-  - libphonenumber_plugin (0.0.1):
+    - GoogleMaps
+  - GoogleMaps (4.1.0):
+    - GoogleMaps/Maps (= 4.1.0)
+  - GoogleMaps/Base (4.1.0)
+  - GoogleMaps/Maps (4.1.0):
+    - GoogleMaps/Base
+  - "permission_handler (5.1.0+2)":
     - Flutter
-    - libphonenumber
-    - libPhoneNumber-iOS
-  - phone_number (0.9.0):
-    - Flutter
-    - PhoneNumberKit/PhoneNumberKitCore (= 3.3.3)
-  - PhoneNumberKit/PhoneNumberKitCore (3.3.3)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
-  - fluttercontactpicker (from `.symlinks/plugins/fluttercontactpicker/ios`)
-  - libphonenumber (from `.symlinks/plugins/libphonenumber/ios`)
-  - libphonenumber_plugin (from `.symlinks/plugins/libphonenumber_plugin/ios`)
-  - phone_number (from `.symlinks/plugins/phone_number/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - google_maps_flutter (from `.symlinks/plugins/google_maps_flutter/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
 
 SPEC REPOS:
   trunk:
-    - libPhoneNumber-iOS
-    - PhoneNumberKit
+    - GoogleMaps
 
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
-  fluttercontactpicker:
-    :path: ".symlinks/plugins/fluttercontactpicker/ios"
-  libphonenumber:
-    :path: ".symlinks/plugins/libphonenumber/ios"
-  libphonenumber_plugin:
-    :path: ".symlinks/plugins/libphonenumber_plugin/ios"
-  phone_number:
-    :path: ".symlinks/plugins/phone_number/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
+  google_maps_flutter:
+    :path: ".symlinks/plugins/google_maps_flutter/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
 
 SPEC CHECKSUMS:
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
-  fluttercontactpicker: 141493596bfca4a786d695d2572c65885bc4f088
-  libphonenumber: bd14d5abfc5939ab0b0767234e2d8e2593af258e
-  libPhoneNumber-iOS: 0a32a9525cf8744fe02c5206eb30d571e38f7d75
-  libphonenumber_plugin: 7cf755ad1656145935d6c208173a476bd3f12898
-  phone_number: a6f99d06cd46c2ff32e07b228ee5cd93b76a1814
-  PhoneNumberKit: 4ce83273551c4d2ae10b7361162f4283dd02835f
+  geolocator_apple: b741765c55dc21950e3e106e8b3584e55cf81ce5
+  google_maps_flutter: 279865bd07e2d8751f43a3bc64bac7f6075d0c93
+  GoogleMaps: 008e2c80e38605b56b560e8deb73d4194ff30bef
+  permission_handler: ccb20a9fad0ee9b1314a52b70b76b473c5f8dab0
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
 

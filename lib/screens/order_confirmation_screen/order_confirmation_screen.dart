@@ -120,7 +120,10 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                   Expanded(
                     child: AppButton(
                       label: 'Track order status',
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, Routes.ORDER_DETAILS_SCREEN);
+                      },
                     ),
                   )
                 ],
@@ -134,7 +137,8 @@ class _OrderConfirmationScreenState extends State<OrderConfirmationScreen> {
                     child: AppButton(
                       isTransparent: true,
                       label: 'Back to home',
-                      onTap: () =>Navigator.pushNamedAndRemoveUntil(context, Routes.HOME_SCREEN,(_)=>false),
+                      onTap: () => Navigator.pushNamedAndRemoveUntil(
+                          context, Routes.HOME_SCREEN, (_) => false),
                     ),
                   )
                 ],

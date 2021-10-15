@@ -1,12 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jane_app/screens/add_address_screen/add_address_screen.dart';
 import 'package:jane_app/screens/cart_screen/cart_screen.dart';
 import 'package:jane_app/screens/checkout_screen/checkout_screen.dart';
 import 'package:jane_app/screens/home_screen/home_screen.dart';
 import 'package:jane_app/screens/introduction_screen/introduction_screen.dart';
 import 'package:jane_app/screens/login_screen/login_screen.dart';
+import 'package:jane_app/screens/map_screen/map_screen.dart';
+import 'package:jane_app/screens/map_search_screen/map_search_screen.dart';
 import 'package:jane_app/screens/order_confirmation_screen/order_confirmation_screen.dart';
+import 'package:jane_app/screens/order_details_screen/order_details_screen.dart';
 import 'package:jane_app/screens/order_history_screen/order_history_screen.dart';
 import 'package:jane_app/screens/product_details_screen/product_details_screen.dart';
 import 'package:jane_app/screens/reset_password_screen/reset_confirmation_screen.dart';
@@ -36,6 +41,9 @@ class Routes {
   static const String ORDER_CONFIRMATION_SCREEN = '/order-confirmation-screen';
   static const String ADD_ADDRESS_SCREEN = '/add-address-screen';
   static const String ORDER_HISTORY_SCREEN = '/order-history-screen';
+  static const String ORDER_DETAILS_SCREEN = '/order-details-screen';
+  static const String MAP_SCREEN = '/map-screen';
+  static const String MAP_SEARCH_SCREEN = '/map-search-screen';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -73,6 +81,15 @@ class Routes {
         return MaterialPageRoute(builder: (_) => AddAddressScreen());
       case ORDER_HISTORY_SCREEN:
         return MaterialPageRoute(builder: (_) => OrderHistoryScreen());
+      case ORDER_DETAILS_SCREEN:
+        return MaterialPageRoute(builder: (_) => OrderDetailsScreen());
+      case MAP_SCREEN:
+        return MaterialPageRoute(
+            builder: (_) => MapScreen(
+                  currentPosition: (settings.arguments as LatLng),
+                ));
+        case MAP_SEARCH_SCREEN:
+        return MaterialPageRoute( builder: (_) => MapSearchScreen( ));
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

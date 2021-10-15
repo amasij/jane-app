@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:jane_app/constants/image_constant.dart';
 import 'package:jane_app/custom_widgets/app_button.dart';
 import 'package:jane_app/custom_widgets/app_toast.dart';
@@ -9,8 +13,11 @@ import 'package:jane_app/custom_widgets/forms/app_phone_number_field.dart';
 import 'package:jane_app/custom_widgets/forms/app_text_field.dart';
 import 'package:jane_app/custom_widgets/forms/app_text_field_secondary.dart';
 import 'package:jane_app/custom_widgets/forms/shared.dart';
+import 'package:jane_app/custom_widgets/map_preview.dart';
 import 'package:jane_app/custom_widgets/svg_button.dart';
 import 'package:jane_app/resources/resources.dart';
+import 'package:jane_app/routes/routes.dart';
+import 'package:jane_app/utils/utils.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class AddAddressScreen extends StatefulWidget {
@@ -21,6 +28,12 @@ class AddAddressScreen extends StatefulWidget {
 }
 
 class _AddAddressScreenState extends State<AddAddressScreen> {
+  Completer<GoogleMapController> _controller = Completer();
+
+  // static final CameraPosition _kGooglePlex = CameraPosition(
+  //   target: LatLng(37.42796133580664, -122.085749655962),
+  //   zoom: 14.4746,
+  // );
   FormGroup _form = FormGroup({
     'title': FormControl<String>(value: '', validators: [
       Validators.required,
@@ -47,6 +60,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
   });
 
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
@@ -54,7 +72,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(ImageConstant.RESET_PASSWORD_BACKGROUND_IMAGE),
+                image:
+                    AssetImage(ImageConstant.RESET_PASSWORD_BACKGROUND_IMAGE),
                 fit: BoxFit.cover,
               ),
             ),
@@ -92,6 +111,29 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           'deliverTo', 'Deliver To', 'e.g Simon Joseph'),
                       SizedBox(
                         height: 20,
+                      ),
+                      FutureBuilder<Position>(
+                        future: Utils.getCurrentLocation(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Container(
+                              child: Column(
+                                children: [
+                                  MapPreview(
+                                    initialPosition: LatLng(
+                                        snapshot.data!.latitude,
+                                        snapshot.data!.longitude),
+                                    description: '',
+                                  ),
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
+                          return SizedBox.shrink();
+                        },
                       ),
                       getTextField(
                           'phoneNumber', 'Phone Number', 'e.g 070 0000 0000'),
@@ -147,7 +189,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           Expanded(
                               child: AppButton(
                             onTap: () {
-                              AppToast.show('Hello','SUCCESS', context);
+                              AppToast.show('Hello', 'SUCCESS', context);
                             },
                             label: 'Save Address',
                           )),

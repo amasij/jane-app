@@ -42,7 +42,7 @@ class AppCheckBoxField extends ReactiveFormField<bool, bool> {
                   children: [
                     Checkbox(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       value: field.value ?? false,
                       onChanged: field.control.enabled ? field.didChange : null,
